@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,9 +33,10 @@ public class BigDecimalConfig {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer customBigDecimalSerializer() {
         return builder -> {
-            SimpleModule module = new SimpleModule();
-            module.addSerializer(BigDecimal.class, new BigDecimalSerializer());
-            builder.modules(module);
+            SimpleModule bigDecimalModule = new SimpleModule();
+            bigDecimalModule.addSerializer(BigDecimal.class, new BigDecimalSerializer());
+
+            builder.modules(bigDecimalModule, new JavaTimeModule());
         };
     }
 }

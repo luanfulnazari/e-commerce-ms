@@ -33,21 +33,22 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     List<TopBuyerDTO> findTopBuyers();
 
     @Query(value = """
-            SELECT
-                BIN_TO_UUID(u.id) AS userId,
-                u.email AS email,
-                ROUND(AVG(o.total_price),2) AS averageTicket
+        SELECT
+            BIN_TO_UUID(u.id) AS userId,
+            u.email AS email,
+            ROUND(AVG(o.total_price),2) AS averageTicket
+        FROM orders o
+        JOIN users u ON u.id = o.user_id
+        WHERE o.status = 'PAID'
+        GROUP BY u.id, u.email
+        ORDER BY averageTicket DESC
+        """,
+            countQuery = """
+            SELECT COUNT(DISTINCT u.id)
             FROM orders o
             JOIN users u ON u.id = o.user_id
             WHERE o.status = 'PAID'
-            GROUP BY u.id, u.email
-            """,
-            countQuery = """
-                    SELECT COUNT(DISTINCT u.id)
-                    FROM orders o
-                    JOIN users u ON u.id = o.user_id
-                    WHERE o.status = 'PAID'
-                    """,
+        """,
             nativeQuery = true)
     Page<UserAverageTicketDTO> getAverageTicketPerUser(Pageable pageable);
 

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: e-commerce
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+app:
+  swagger:
+    name: e-commerce
+    version: 1.0
+    description: Microservice for handling authentication, product catalog management, order processing, and sales reporting in an e-commerce platform.
+  jwt:
+    issuer: ${JWT_ISSUER}
+    expires-in-seconds: ${JWT_EXPIRES_IN_SECONDS}
+    refresh-token-expires-in-days: ${JWT_REFRESH_TOKEN_EXPIRES_IN_DAYS}
+    private-key: ${JWT_PRIVATE_KEY}
+    public-key: ${JWT_PUBLIC_KEY}

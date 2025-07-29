@@ -4,6 +4,7 @@ import com.foursales.ecommerce.enums.Role;
 import com.foursales.ecommerce.resource.response.UserResponse;
 import com.foursales.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -36,7 +37,7 @@ public class UserResource {
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public Page<UserResponse> getAllUsers(
-            @PageableDefault(size = 20, sort = "email") Pageable pageable,
+            @ParameterObject @PageableDefault(size = 20, sort = "email") Pageable pageable,
             @RequestParam(required = false) Role role) {
         return userService.getAllUsers(pageable, role);
     }

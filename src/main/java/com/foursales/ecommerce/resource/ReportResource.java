@@ -5,8 +5,8 @@ import com.foursales.ecommerce.dto.TopBuyerDTO;
 import com.foursales.ecommerce.dto.UserAverageTicketDTO;
 import com.foursales.ecommerce.service.ReportService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,7 @@ public class ReportResource {
     @GetMapping("/average-ticket")
     @ResponseStatus(HttpStatus.OK)
     public Page<UserAverageTicketDTO> getAverageTicketByUser(
-            @PageableDefault(size = 20) Pageable pageable) {
+            @ParameterObject @PageableDefault(size = 20) Pageable pageable) {
         return reportService.getAverageTicketPerUser(pageable);
     }
 

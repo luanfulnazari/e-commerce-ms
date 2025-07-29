@@ -6,6 +6,7 @@ import com.foursales.ecommerce.resource.response.ProductResponse;
 import com.foursales.ecommerce.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -48,7 +49,7 @@ public class ProductResource {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Page<ProductResponse> findAll(
-            @PageableDefault(size = 20, sort = "name") Pageable pageable) {
+            @ParameterObject @PageableDefault(size = 20, sort = "name") Pageable pageable) {
         return productService.findAll(pageable);
     }
 

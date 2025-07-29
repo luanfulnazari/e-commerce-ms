@@ -2,10 +2,7 @@ package com.foursales.ecommerce.resource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.foursales.ecommerce.config.TestSecurityConfig;
-import com.foursales.ecommerce.service.AuthService;
-import com.foursales.ecommerce.service.OrderService;
-import com.foursales.ecommerce.service.ProductService;
-import com.foursales.ecommerce.service.ReportService;
+import com.foursales.ecommerce.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -31,4 +28,7 @@ public abstract class AbstractResourceMvcTest {
 
     @MockitoBean
     protected ReportService reportService;
+
+    @MockitoBean
+    protected UserService userService;
 }

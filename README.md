@@ -116,23 +116,27 @@ Ou iniciar diretamente via IDE de preferência (IntelliJ, Eclipse, VS Code).
 
 ## 🌐 Endpoints
 
-| Método | Rota                          | Descrição                             | Acesso  | Papéis Requeridos |
-|--------|-------------------------------|---------------------------------------|---------|-------------------|
-| POST   | `/v1/auth/signup`             | Criar um novo usuário                 | Público | -                 |
-| POST   | `/v1/auth/signin`             | Autenticar usuário                    | Público | -                 |
-| POST   | `/v1/auth/signout`            | Fazer logout do usuário               | Privado | `ADMIN` / `USER`  |
-| POST   | `/v1/auth/refresh`            | Atualizar token de autenticação       | Público | -                 |
-| POST   | `/v1/orders`                  | Criar um novo pedido                  | Privado | `ADMIN` / `USER`  |
-| POST   | `/v1/orders/{id}/pay`         | Realizar pagamento de pedido pelo ID  | Privado | `ADMIN` / `USER`  |
-| GET    | `/v1/orders/my`               | Listar pedidos do usuário autenticado | Privado | `ADMIN` / `USER`  |
-| POST   | `/v1/products`                | Criar um novo produto                 | Privado | `ADMIN`           |
-| PUT    | `/v1/products/{id}`           | Atualizar produto pelo ID             | Privado | `ADMIN`           |
-| DELETE | `/v1/products/{id}`           | Remover produto pelo ID               | Privado | `ADMIN`           |
-| GET    | `/v1/products`                | Listar produtos com paginação         | Privado | `ADMIN` / `USER`  |
-| GET    | `/v1/products/{id}`           | Buscar produto pelo ID                | Privado | `ADMIN` / `USER`  |
-| GET    | `/v1/reports/top-buyers`      | Listar top compradores                | Privado | `ADMIN`           |
-| GET    | `/v1/reports/average-ticket`  | Média de ticket por usuário           | Privado | `ADMIN`           |
-| GET    | `/v1/reports/monthly-revenue` | Receita mensal                        | Privado | `ADMIN`           |
+| Método | Rota                          | Descrição                                 | Acesso  | Papéis Requeridos |
+|--------|-------------------------------|-------------------------------------------|---------|-------------------|
+| POST   | `/v1/auth/signup`             | Criar um novo usuário                     | Público | -                 |
+| POST   | `/v1/auth/signin`             | Autenticar usuário                        | Público | -                 |
+| POST   | `/v1/auth/signout`            | Fazer logout do usuário                   | Privado | `ADMIN` / `USER`  |
+| POST   | `/v1/auth/refresh`            | Atualizar token de autenticação           | Público | -                 |
+| POST   | `/v1/users/{id}/promote`      | Promover usuário a administrador pelo ID  | Privado | `ADMIN`           |
+| GET    | `/v1/users`                   | Listar usuários com paginação             | Privado | `ADMIN`           |
+| GET    | `/v1/users/{id}`              | Buscar usuário pelo ID                    | Privado | `ADMIN`           |
+| GET    | `/v1/users/me`                | Buscar usuário autenticado                | Privado | `ADMIN` / `USER`  |
+| POST   | `/v1/orders`                  | Criar um novo pedido                      | Privado | `ADMIN` / `USER`  |
+| POST   | `/v1/orders/{id}/pay`         | Realizar pagamento de pedido pelo ID      | Privado | `ADMIN` / `USER`  |
+| GET    | `/v1/orders/my`               | Listar pedidos do usuário autenticado     | Privado | `ADMIN` / `USER`  |
+| POST   | `/v1/products`                | Criar um novo produto                     | Privado | `ADMIN`           |
+| PUT    | `/v1/products/{id}`           | Atualizar produto pelo ID                 | Privado | `ADMIN`           |
+| DELETE | `/v1/products/{id}`           | Remover produto pelo ID                   | Privado | `ADMIN`           |
+| GET    | `/v1/products`                | Listar produtos com paginação             | Privado | `ADMIN` / `USER`  |
+| GET    | `/v1/products/{id}`           | Buscar produto pelo ID                    | Privado | `ADMIN` / `USER`  |
+| GET    | `/v1/reports/top-buyers`      | Listar top compradores                    | Privado | `ADMIN`           |
+| GET    | `/v1/reports/average-ticket`  | Média de ticket por usuário com paginação | Privado | `ADMIN`           |
+| GET    | `/v1/reports/monthly-revenue` | Receita mensal                            | Privado | `ADMIN`           |
 
 ---
 
@@ -177,6 +181,8 @@ Alguns endpoints exigem autenticação via **JWT**. Para utilizá-los no Swagger
 - Copie o novo `accessToken` gerado.
 - Repita novamente os passos da primeira autenticação com o novo token.
 
+---
+
 ## 📦 Dump da Base de Dados
 
 A base inicial do banco de dados é populada via **migrations Flyway**, garantindo um ambiente consistente para desenvolvimento e testes. 
@@ -184,6 +190,8 @@ A base inicial do banco de dados é populada via **migrations Flyway**, garantin
 São inseridos **6 usuários** no dump inicial, sendo **5 usuários** com papel `USER` e **1 usuário** com papel `ADMIN`. 
 
 Além disso, para cada usuário, é criado **1 pedido** com status **PAGO** no banco para validação dos relatórios e funcionalidades da aplicação.
+
+---
 
 ## 🔑 Credenciais de Acesso
 
@@ -195,6 +203,8 @@ Além disso, para cada usuário, é criado **1 pedido** com status **PAGO** no b
 | Usuário Padrão   | user4@example.com  | password  | USER   |
 | Usuário Padrão   | user5@example.com  | password  | USER   |
 | Administrador    | admin@example.com  | password  | ADMIN  |
+
+---
 
 ## 🛡️ Cobertura de Testes
 

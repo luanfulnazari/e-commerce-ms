@@ -1,6 +1,9 @@
 package com.foursales.ecommerce.repository;
 
 import com.foursales.ecommerce.entity.User;
+import com.foursales.ecommerce.enums.Role;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     Optional<User> findByEmail(String username);
 
     boolean existsByEmail(String email);
+
+    Page<User> findAllByRole(Role role, Pageable pageable);
 }

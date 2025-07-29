@@ -58,7 +58,7 @@ git clone https://github.com/luanfulnazari/e-commerce-ms.git
 
 ### 📝 Como configurar o arquivo `.env`
 
-Caso não esteja presente, crie um arquivo chamado `.env` na raiz do projeto e insira as variáveis de ambiente listas abaixo: 
+Caso não esteja presente, crie um arquivo chamado `.env` na raiz do projeto e insira as variáveis de ambiente listadas abaixo: 
 
 ```env
 MYSQL_HOST=localhost
@@ -202,7 +202,7 @@ A aplicação conta com uma **sólida suíte de testes**, abrangendo:
 
 - **Testes unitários** para os serviços, utilitários e regras de negócio.
 - **Testes de integração** focados na **camada MVC**, utilizando o `@WebMvcTest`.
-- **Testes de integração** focados na **camada de persistência**, utilizando o `@DataJpaTest`
+- **Testes de integração** focados na **camada de persistência**, utilizando o `@DataJpaTest`.
 
 📊 A cobertura atual é de **100% das classes e 100% das linhas de código**.
 

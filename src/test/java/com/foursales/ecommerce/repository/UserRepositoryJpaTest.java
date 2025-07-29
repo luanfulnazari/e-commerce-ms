@@ -22,7 +22,6 @@ class UserRepositoryJpaTest {
     private UserRepository userRepository;
 
     @Nested
-    @DisplayName("Find By Email")
     class FindByEmailTests {
 
         @Test
@@ -34,11 +33,9 @@ class UserRepositoryJpaTest {
 
             assertTrue(result.isPresent());
         }
-
     }
 
     @Nested
-    @DisplayName("Exists By Email")
     class ExistsByEmailTests {
 
         @Test
@@ -58,7 +55,6 @@ class UserRepositoryJpaTest {
 
             assertFalse(exists);
         }
-
     }
 
     private void createUser(String email) {

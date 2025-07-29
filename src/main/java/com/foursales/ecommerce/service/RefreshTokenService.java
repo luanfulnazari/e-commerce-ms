@@ -3,7 +3,7 @@ package com.foursales.ecommerce.service;
 import com.foursales.ecommerce.config.PropertiesConfig;
 import com.foursales.ecommerce.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class RefreshTokenService {
 

@@ -16,9 +16,9 @@ import com.foursales.ecommerce.resource.request.CreateOrderRequest;
 import com.foursales.ecommerce.resource.request.OrderItemRequest;
 import com.foursales.ecommerce.resource.response.OrderResponse;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -101,6 +101,7 @@ public class OrderService {
         return OrderMapper.toResponse(order);
     }
 
+    @Transactional(readOnly = true)
     public List<OrderResponse> getUserOrders() {
         UUID userId = jwtService.getAuthenticatedUserId();
 

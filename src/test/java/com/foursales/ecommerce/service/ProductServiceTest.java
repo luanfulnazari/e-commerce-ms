@@ -104,7 +104,6 @@ class ProductServiceTest {
             verify(productRepository).findById(productId);
             verifyNoMoreInteractions(productRepository);
         }
-
     }
 
     @Nested
@@ -137,7 +136,6 @@ class ProductServiceTest {
             verify(productRepository).findById(productId);
             verifyNoMoreInteractions(productRepository);
         }
-
     }
 
     @Nested
@@ -168,7 +166,6 @@ class ProductServiceTest {
             verify(productRepository).findAll(pageable);
             verifyNoMoreInteractions(productRepository);
         }
-
     }
 
     @Nested

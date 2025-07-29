@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -30,6 +31,7 @@ public class AuthService {
     private final RefreshTokenService refreshTokenService;
     private final PropertiesConfig propertiesConfig;
 
+    @Transactional
     public UserResponse signUp(SignUpRequest request) {
 
         if (userRepository.existsByEmail(request.email()))
@@ -43,6 +45,7 @@ public class AuthService {
         return UserMapper.toResponse(user);
     }
 
+    @Transactional(readOnly = true)
     public AuthResponse signIn(SignInRequest request) {
 
         return userRepository.findByEmail(request.email()).map(user -> {
@@ -60,6 +63,7 @@ public class AuthService {
         }).orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
     }
 
+    @Transactional(readOnly = true)
     public AuthResponse refreshToken(RefreshTokenRequest request) {
 
         UUID userId = refreshTokenService.validateAndGetUserId(request.refreshToken());
